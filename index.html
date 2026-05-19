@@ -4,69 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lin's Nook — 工具 · 博客 · 灵感</title>
-    <meta name="description" content="一个温暖的技术角落，存放工具、文章与灵感。">
+    <title>冰凌呀 · 小栈</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
     <style>
         :root {
-            /* 暖日模式（默认） */
-            --bg: #fdf9f5;
-            --bg-secondary: #f7f0e9;
-            --surface: #ffffff;
-            --surface-hover: #fefcfa;
-            --text: #3d322b;
-            --text-secondary: #6b5d53;
-            --text-muted: #9b8c80;
-            --primary: #d9774a;
-            --primary-light: #e89b74;
-            --primary-soft: #fdf0e8;
-            --accent: #e0a84c;
-            --accent-soft: #fef8ee;
-            --border: #ede3d8;
-            --border-light: #f3ece4;
-            --shadow-sm: 0 1px 3px rgba(160, 120, 90, 0.06);
-            --shadow: 0 2px 16px rgba(160, 120, 90, 0.10);
-            --shadow-lg: 0 8px 32px rgba(140, 100, 70, 0.12);
-            --shadow-glow: 0 0 40px rgba(217, 119, 74, 0.15);
-            --code-bg: #2b2320;
-            --code-text: #f4d9c0;
-            --code-comment: #b8957a;
-            --nav-bg: rgba(253, 249, 245, 0.82);
-            --nav-blur: blur(16px);
-            --radius-sm: 8px;
-            --radius: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 24px;
-            --font-sans: "Inter", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-            --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", "Cascadia Code", "Consolas", "Menlo", monospace;
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --max-width: 1100px;
-        }
-
-        /* 暖夜模式 */
-        [data-theme="dark"] {
-            --bg: #1c1815;
-            --bg-secondary: #231e1b;
-            --surface: #282320;
-            --surface-hover: #2e2925;
-            --text: #e8dcd3;
-            --text-secondary: #bfaea0;
-            --text-muted: #8a7a6d;
-            --primary: #e8895a;
-            --primary-light: #f0a580;
-            --primary-soft: #2f2219;
-            --accent: #e6b860;
-            --accent-soft: #2d2518;
-            --border: #3a3029;
-            --border-light: #322b25;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-            --shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
-            --shadow-glow: 0 0 48px rgba(232, 137, 90, 0.2);
-            --code-bg: #1a1512;
-            --code-text: #f0d4b8;
-            --code-comment: #9b7d65;
-            --nav-bg: rgba(28, 24, 21, 0.82);
+            --sakura-pink: #FADADD;
+            --sakura-mid: #F4B8C1;
+            --sakura-deep: #E88D9B;
+            --lavender: #E8D5F5;
+            --lavender-deep: #C9A9E0;
+            --sky-blue: #D4EAF7;
+            --sky-deep: #A3C9E0;
+            --mint-green: #D4F0E0;
+            --mint-deep: #A3D9B8;
+            --peach: #FDE4D0;
+            --peach-deep: #F5C9A0;
+            --white-soft: #FFFAFB;
+            --white-card: rgba(255, 255, 255, 0.75);
+            --white-card-hover: rgba(255, 255, 255, 0.92);
+            --text-primary: #4A3F4A;
+            --text-secondary: #7A6F7A;
+            --text-light: #A89DA8;
+            --shadow-soft: 0 4px 20px rgba(200, 160, 180, 0.18);
+            --shadow-card: 0 8px 32px rgba(180, 140, 160, 0.14);
+            --shadow-hover: 0 14px 40px rgba(180, 140, 160, 0.22);
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         *,
@@ -79,304 +58,172 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Quicksand', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(170deg, #FDE8EC 0%, #FDF2F8 15%, #F8F0F8 30%, #F0F0FA 50%, #F0F6FA 70%, #F5F0F8 85%, #FDE8EC 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
             line-height: 1.7;
-            transition: background-color var(--transition-slow), color var(--transition-slow);
             min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
         }
 
-        /* ========== 背景装饰 ========== */
-        body::before {
-            content: '';
+        .bg-decoration {
             position: fixed;
-            top: -30%;
-            right: -20%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(217, 119, 74, 0.04) 0%, transparent 70%);
-            border-radius: 50%;
             pointer-events: none;
             z-index: 0;
-            transition: background var(--transition-slow);
+            opacity: 0.5;
         }
 
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -25%;
-            left: -15%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(224, 168, 76, 0.04) 0%, transparent 70%);
+        .bg-circle-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(248, 200, 210, 0.25) 0%, transparent 70%);
+            top: -100px;
+            right: -80px;
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            transition: background var(--transition-slow);
+            animation: floatSlow 12s ease-in-out infinite;
         }
 
-        [data-theme="dark"] body::before {
-            background: radial-gradient(circle, rgba(232, 137, 90, 0.06) 0%, transparent 70%);
+        .bg-circle-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(200, 180, 220, 0.2) 0%, transparent 70%);
+            bottom: -60px;
+            left: -90px;
+            border-radius: 50%;
+            animation: floatSlow 15s ease-in-out infinite reverse;
         }
 
-        [data-theme="dark"] body::after {
-            background: radial-gradient(circle, rgba(230, 184, 96, 0.05) 0%, transparent 70%);
+        .bg-circle-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(180, 210, 230, 0.22) 0%, transparent 70%);
+            top: 50%;
+            left: 60%;
+            border-radius: 50%;
+            animation: floatSlow 10s ease-in-out infinite;
         }
 
-        /* ========== 导航栏 ========== */
-        .nav {
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(18px, -20px) scale(1.04);
+            }
+
+            66% {
+                transform: translate(-14px, 14px) scale(0.97);
+            }
+        }
+
+        .sakura-container {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 100;
-            background: var(--nav-bg);
-            backdrop-filter: var(--nav-blur);
-            -webkit-backdrop-filter: var(--nav-blur);
-            border-bottom: 1px solid transparent;
-            transition: all var(--transition);
-            padding: 0 1.5rem;
-        }
-
-        .nav.scrolled {
-            border-bottom-color: var(--border-light);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .nav-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 58px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.01em;
-            transition: color var(--transition);
-            white-space: nowrap;
-        }
-
-        .nav-logo:hover {
-            color: var(--primary);
-        }
-
-        .nav-logo-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-sm);
-            background: var(--primary-soft);
-            color: var(--primary);
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all var(--transition);
-            flex-shrink: 0;
-        }
-
-        .nav-logo:hover .nav-logo-icon {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            display: block;
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.01em;
-            transition: all var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-            background: var(--primary-soft);
-        }
-
-        .nav-links a.active {
-            font-weight: 600;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .theme-toggle {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1.5px solid var(--border);
-            background: var(--surface);
-            cursor: pointer;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition);
-            color: var(--text-secondary);
-            flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--primary-light);
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .hamburger {
-            display: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1.5px solid var(--border);
-            background: var(--surface);
-            cursor: pointer;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            transition: all var(--transition);
-            z-index: 110;
-            flex-shrink: 0;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 18px;
-            height: 2px;
-            border-radius: 2px;
-            background: var(--text);
-            transition: all var(--transition);
-            transform-origin: center;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* 移动端菜单 */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 58px;
-            left: 0;
-            right: 0;
-            background: var(--nav-bg);
-            backdrop-filter: var(--nav-blur);
-            -webkit-backdrop-filter: var(--nav-blur);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1rem 1.5rem 1.5rem;
-            z-index: 99;
-            flex-direction: column;
-            gap: 0.3rem;
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-110%);
-            opacity: 0;
-            transition: all var(--transition);
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .mobile-menu.open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
+        .sakura-petal {
+            position: absolute;
+            top: -60px;
+            opacity: 0.55;
+            animation: sakuraFall linear infinite;
+            font-size: 1.4rem;
         }
 
-        .mobile-menu a {
-            display: block;
-            padding: 0.7rem 1rem;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--text);
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all var(--transition);
+        @keyframes sakuraFall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.6;
+            }
+
+            25% {
+                transform: translateY(25vh) translateX(40px) rotate(90deg);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(-30px) rotate(180deg);
+                opacity: 0.35;
+            }
+
+            75% {
+                transform: translateY(75vh) translateX(25px) rotate(270deg);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(105vh) translateX(-15px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        .mobile-menu a:hover,
-        .mobile-menu a.active {
-            background: var(--primary-soft);
-            color: var(--primary);
-        }
-
-        /* ========== 主内容区 ========== */
-        .main {
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
-        /* ========== Hero 区域 ========== */
-        .hero {
-            padding: 140px 1.5rem 80px;
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto;
+        /* 导航栏 */
+        .navbar {
+            position: sticky;
+            top: 16px;
+            z-index: 1000;
+            margin: 16px auto 0;
+            max-width: 1100px;
+            padding: 0 24px;
         }
 
-        .hero-avatar {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            margin: 0 auto 1.5rem;
+        .navbar-inner {
+            background: var(--white-card);
+            backdrop-filter: blur(16px) saturate(1.4);
+            -webkit-backdrop-filter: blur(16px) saturate(1.4);
+            border: 1px solid rgba(255, 220, 230, 0.5);
+            border-radius: var(--radius-xl);
+            padding: 14px 28px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #fff;
-            font-family: var(--font-mono);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            position: relative;
-            animation: avatarFloat 4s ease-in-out infinite;
+            justify-content: space-between;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
         }
 
-        @keyframes avatarFloat {
+        .navbar-inner:hover {
+            box-shadow: var(--shadow-card);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-brand .brand-icon {
+            font-size: 1.6rem;
+            animation: bounceGentle 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceGentle {
 
             0%,
             100% {
@@ -384,427 +231,435 @@
             }
 
             50% {
-                transform: translateY(-8px);
+                transform: translateY(-6px);
             }
         }
 
-        .hero-avatar::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--sakura-deep);
+            background: rgba(250, 218, 221, 0.4);
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+            font-size: 0.85rem;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            background: rgba(250, 218, 221, 0.3);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .hero-avatar {
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 2px dashed var(--border);
-            opacity: 0.5;
-            animation: avatarSpin 20s linear infinite;
+            object-fit: cover;
+            border: 4px solid var(--white-card);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 18px;
+            transition: var(--transition);
+            background: linear-gradient(135deg, #FADADD, #E8D5F5);
         }
 
-        @keyframes avatarSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 100px;
-            background: var(--accent-soft);
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            font-family: var(--font-mono);
-            margin-bottom: 1rem;
-            border: 1px solid rgba(224, 168, 76, 0.2);
+        .hero-avatar:hover {
+            transform: scale(1.06);
+            box-shadow: var(--shadow-hover);
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.25;
-            margin-bottom: 0.75rem;
-            color: var(--text);
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
 
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .hero .typewriter-wrap {
+        .hero .subtitle {
             font-size: 1.05rem;
             color: var(--text-secondary);
-            font-family: var(--font-mono);
-            min-height: 1.8em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
+            margin-bottom: 8px;
+            font-weight: 400;
         }
 
-        .hero .typewriter-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background: var(--primary);
-            animation: blink 0.9s step-end infinite;
-            vertical-align: text-bottom;
-            border-radius: 1px;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .hero-subtitle {
-            color: var(--text-muted);
+        .hero .typed-wrapper {
+            min-height: 28px;
             font-size: 0.95rem;
-            margin-top: 0.6rem;
-            line-height: 1.6;
+            color: var(--sakura-deep);
+            font-weight: 500;
+            margin-bottom: 16px;
         }
 
-        .hero-cta {
+        .hero-social {
             display: flex;
-            gap: 12px;
             justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-top: 2rem;
+        }
+
+        .hero-social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            background: var(--white-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid rgba(230, 200, 210, 0.4);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .hero-social a:hover {
+            color: var(--sakura-deep);
+            background: var(--white-card-hover);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        /* Section 通用 */
+        .section {
+            padding: 30px 0 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.92rem;
+            margin-bottom: 32px;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: var(--white-card);
+            backdrop-filter: blur(14px) saturate(1.3);
+            -webkit-backdrop-filter: blur(14px) saturate(1.3);
+            border: 1px solid rgba(240, 215, 225, 0.5);
+            border-radius: var(--radius-lg);
+            padding: 26px 28px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background: var(--white-card-hover);
+        }
+
+        /* 博客卡片网格 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 24px;
+        }
+
+        .blog-card .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .blog-card .blog-tag {
+            display: inline-block;
+            background: var(--lavender);
+            color: #6B5B7B;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .blog-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .blog-card h3 a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .blog-card h3 a:hover {
+            color: var(--sakura-deep);
+        }
+
+        .blog-card .blog-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .blog-card .blog-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            grid-column: 1 / -1;
+        }
+
+        .blog-more {
+            text-align: center;
+            margin-top: 28px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 0.7rem 1.5rem;
-            border-radius: 100px;
+            padding: 11px 24px;
+            border: none;
+            border-radius: 50px;
             font-weight: 600;
             font-size: 0.9rem;
-            text-decoration: none;
             cursor: pointer;
-            transition: all var(--transition);
-            border: none;
-            letter-spacing: 0.01em;
-            white-space: nowrap;
-            font-family: var(--font-sans);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(217, 119, 74, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: #c8683d;
-            box-shadow: 0 6px 22px rgba(217, 119, 74, 0.4);
-            transform: translateY(-2px);
+            transition: var(--transition);
+            font-family: inherit;
+            text-decoration: none;
         }
 
         .btn-outline {
-            background: var(--surface);
-            color: var(--text);
-            border: 1.5px solid var(--border);
+            background: var(--white-card);
+            color: var(--text-secondary);
+            border: 1px solid rgba(220, 200, 210, 0.5);
+            backdrop-filter: blur(8px);
         }
 
         .btn-outline:hover {
-            border-color: var(--primary-light);
-            color: var(--primary);
-            box-shadow: var(--shadow);
-            transform: translateY(-2px);
+            background: var(--white-card-hover);
+            color: var(--sakura-deep);
+            border-color: var(--sakura-mid);
         }
 
-        /* ========== 区块标题 ========== */
-        .section {
-            padding: 60px 1.5rem;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            color: var(--primary);
-            background: var(--primary-soft);
-            padding: 0.25rem 0.9rem;
-            border-radius: 100px;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            color: var(--text);
-            margin-bottom: 0.4rem;
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* ========== 工具卡片网格 ========== */
-        .tools-grid {
+        /* 工具卡片网格 */
+        .tool-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
         }
 
         .tool-card {
-            background: var(--surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.6rem 1.5rem;
+            text-align: center;
             cursor: pointer;
-            transition: all var(--transition);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            gap: 0.7rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-light), var(--accent));
-            opacity: 0;
-            transition: opacity var(--transition);
-            border-radius: 0 0 2px 2px;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--border);
-        }
-
-        .tool-card:hover::before {
-            opacity: 1;
-        }
-
-        .tool-icon {
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-soft);
-            flex-shrink: 0;
-            transition: all var(--transition);
+        .tool-card .tool-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+            transition: var(--transition);
         }
 
         .tool-card:hover .tool-icon {
-            background: var(--primary);
-            transform: scale(1.08);
+            transform: scale(1.15);
         }
 
-        .tool-card:hover .tool-icon .emoji {
-            filter: brightness(1.3);
-        }
-
-        .tool-name {
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: -0.01em;
-            color: var(--text);
-        }
-
-        .tool-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .tool-tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--primary);
-            background: var(--primary-soft);
-            padding: 0.2rem 0.6rem;
-            border-radius: 100px;
-            align-self: flex-start;
-            letter-spacing: 0.04em;
-        }
-
-        /* ========== 博客卡片 ========== */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .blog-card {
-            background: var(--surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: all var(--transition);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--border);
-        }
-
-        .blog-card-image {
-            height: 170px;
-            background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--primary);
-            letter-spacing: 0.04em;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .blog-card-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40%;
-            background: linear-gradient(to top, var(--surface), transparent);
-            pointer-events: none;
-        }
-
-        .blog-card-image .blog-emoji {
-            font-size: 3rem;
-            position: relative;
-            z-index: 1;
-            transition: transform var(--transition);
-        }
-
-        .blog-card:hover .blog-card-image .blog-emoji {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
-        .blog-card-body {
-            padding: 1.3rem 1.4rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .blog-card-meta {
-            display: flex;
-            gap: 12px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            letter-spacing: 0.03em;
-        }
-
-        .blog-card-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: -0.01em;
-            line-height: 1.4;
-            color: var(--text);
-        }
-
-        .blog-card-excerpt {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-            flex: 1;
-        }
-
-        .blog-card-tag {
-            display: inline-block;
-            font-size: 0.7rem;
+        .tool-card h4 {
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--accent);
-            background: var(--accent-soft);
-            padding: 0.2rem 0.65rem;
-            border-radius: 100px;
-            align-self: flex-start;
-            letter-spacing: 0.03em;
+            margin-bottom: 4px;
+            color: var(--text-primary);
         }
 
-        /* ========== 关于区 ========== */
-        .about {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
-            padding: 2.5rem 2rem;
-            text-align: center;
+        .tool-card p {
+            font-size: 0.82rem;
+            color: var(--text-light);
+        }
+
+        /* 工具面板（隐藏） */
+        .tool-panel {
+            display: none;
+            margin-top: 28px;
+            animation: fadeSlideIn 0.4s ease;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-panel .card {
             max-width: 700px;
             margin: 0 auto;
-            border: 1px solid var(--border-light);
-            transition: all var(--transition);
         }
 
-        .about p {
+        .tool-panel textarea,
+        .tool-panel input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #F0E0E8;
+            border-radius: var(--radius-md);
+            font-family: 'Quicksand', 'Noto Sans SC', monospace;
+            font-size: 0.9rem;
+            background: rgba(255, 250, 252, 0.8);
+            transition: var(--transition);
+            resize: vertical;
+            color: var(--text-primary);
+        }
+
+        .tool-panel textarea:focus,
+        .tool-panel input:focus {
+            outline: none;
+            border-color: var(--sakura-mid);
+            box-shadow: 0 0 0 4px rgba(244, 184, 193, 0.15);
+        }
+
+        .tool-panel textarea {
+            min-height: 180px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #F4B8C1, #E88D9B);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(232, 141, 155, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(232, 141, 155, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--white-card);
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
+            border: 1px solid rgba(220, 200, 210, 0.5);
         }
 
-        .about .signature {
-            font-family: var(--font-mono);
-            color: var(--primary);
-            margin-top: 1rem;
+        .btn-secondary:hover {
+            background: var(--white-card-hover);
+            color: var(--sakura-deep);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tool-output {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(248, 240, 245, 0.6);
+            border-radius: var(--radius-md);
+            font-family: 'Quicksand', 'Noto Sans SC', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid rgba(230, 200, 210, 0.3);
+        }
+
+        .tool-panel label {
+            display: block;
             font-weight: 600;
-            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
         }
 
-        /* ========== 页脚 ========== */
+        .tool-panel .form-group {
+            margin-bottom: 16px;
+        }
+
         .footer {
             text-align: center;
-            padding: 3rem 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
-            letter-spacing: 0.03em;
-            border-top: 1px solid var(--border-light);
-            margin-top: 2rem;
-            transition: all var(--transition);
+            padding: 40px 0 30px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .footer .heart {
-            color: var(--primary);
+        .footer .footer-heart {
+            color: var(--sakura-deep);
+            animation: heartbeat 1.5s ease-in-out infinite;
             display: inline-block;
-            animation: heartbeat 1.2s ease-in-out infinite;
         }
 
         @keyframes heartbeat {
@@ -815,7 +670,7 @@
             }
 
             15% {
-                transform: scale(1.25);
+                transform: scale(1.2);
             }
 
             30% {
@@ -823,7 +678,7 @@
             }
 
             45% {
-                transform: scale(1.2);
+                transform: scale(1.15);
             }
 
             60% {
@@ -831,452 +686,866 @@
             }
         }
 
-        /* ========== 滚动动画 ========== */
-        .fade-in {
+        .footer a {
+            color: var(--sakura-deep);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--white-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(230, 200, 210, 0.4);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: hidden;
         }
 
-        .fade-in.visible {
+        .back-to-top.visible {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
         }
 
-        /* ========== 响应式 ========== */
-        @media (max-width: 900px) {
-            .tools-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .hero {
-                padding: 110px 1.2rem 50px;
-            }
-
-            .section {
-                padding: 40px 1.2rem;
-            }
+        .back-to-top:hover {
+            color: var(--sakura-deep);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 12px;
+                top: 8px;
+                margin-top: 8px;
+            }
+
+            .navbar-inner {
+                padding: 12px 18px;
+                border-radius: var(--radius-lg);
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 12px;
+                right: 12px;
+                margin-top: 10px;
+                flex-direction: column;
+                background: var(--white-card-hover);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: var(--radius-lg);
+                padding: 16px;
+                box-shadow: var(--shadow-card);
+                border: 1px solid rgba(240, 215, 225, 0.5);
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 16px;
+                border-radius: var(--radius-sm);
+                font-size: 0.95rem;
             }
 
             .hamburger {
-                display: flex;
+                display: block;
             }
 
-            .mobile-menu {
-                display: flex;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
+            .hero {
+                padding: 40px 0 24px;
             }
 
             .blog-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
             }
 
-            .hero {
-                padding: 100px 1rem 40px;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            .hero-avatar {
-                width: 68px;
-                height: 68px;
-                font-size: 1.7rem;
+            .tool-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .section {
-                padding: 32px 1rem;
+                padding: 20px 0 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
             }
 
-            .about {
-                padding: 1.8rem 1.2rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.85rem;
-            }
-
-            .blog-card-image {
-                height: 140px;
+            .hero-social a {
+                padding: 8px 14px;
+                font-size: 0.82rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav" id="navbar">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo" aria-label="首页">
-                <span class="nav-logo-icon">&lt;/&gt;</span>
-                <span>Lin's Nook</span>
+
+    <div class="bg-decoration bg-circle-1"></div>
+    <div class="bg-decoration bg-circle-2"></div>
+    <div class="bg-decoration bg-circle-3"></div>
+    <div class="sakura-container" id="sakuraContainer"></div>
+
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="600">
+        <div class="navbar-inner">
+            <a href="#" class="nav-brand">
+                <span class="brand-icon">❄️</span>
+                <span>冰凌呀 · 小栈</span>
             </a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="菜单">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active" data-section="home">首页</a></li>
-                <li><a href="#tools" data-section="tools">工具</a></li>
-                <li><a href="#blog" data-section="blog">博客</a></li>
-                <li><a href="#about" data-section="about">关于</a></li>
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#blog"><i class="fas fa-feather-alt"></i> 博客</a></li>
+                <li><a href="#tools"><i class="fas fa-wand-magic-sparkles"></i> 工具</a></li>
+                <li><a href="https://github.com/Ice-rink" target="_blank" rel="noopener"><i class="fab fa-github"></i>
+                        GitHub</a></li>
             </ul>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换暖日 / 暖夜模式">
-                    🌙
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="菜单">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
         </div>
     </nav>
-    <!-- 移动端菜单 -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" class="active" data-section="home">🏠 首页</a>
-        <a href="#tools" data-section="tools">🛠️ 工具</a>
-        <a href="#blog" data-section="blog">📝 博客</a>
-        <a href="#about" data-section="about">👋 关于</a>
-    </div>
 
-    <!-- 主内容 -->
-    <main class="main">
-        <!-- Hero -->
-        <section class="hero fade-in" id="home">
-            <div class="hero-avatar">L</div>
-            <div class="hero-badge">🚀 indie builder · 持续打磨中</div>
-            <h1>嘿，我是 <span class="highlight">Lin</span> 👋<br>一个喜欢把想法变成<span class="highlight">工具</span>的人</h1>
-            <div class="typewriter-wrap">
-                <span id="typewriterText">用代码，给生活加点糖。</span>
-                <span class="typewriter-cursor"></span>
+    <main>
+        <section class="hero container" id="home" data-aos="fade-up" data-aos-duration="700">
+            <img class="hero-avatar" src="https://avatars.githubusercontent.com/Ice-rink" alt="冰凌呀的头像" loading="eager"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="hero-avatar"
+                style="display:none; width:110px; height:110px; margin:0 auto 18px; align-items:center; justify-content:center; font-size:2.8rem;">
+                ❄️
             </div>
-            <p class="hero-subtitle">
-                这里是我的数字小窝——收藏着顺手打磨的小工具，<br>也记录着技术路上的碎碎念与灵感火花。
-            </p>
-            <div class="hero-cta">
-                <a href="#tools" class="btn btn-primary">🛠️ 看看工具</a>
-                <a href="#blog" class="btn btn-outline">📖 逛逛博客</a>
+            <h1>冰凌呀 · Ice_rink</h1>
+            <p class="subtitle">写点代码，记录生活，分享温柔的科技日常 ✨</p>
+            <div class="typed-wrapper">
+                <span id="typedOutput"></span>
             </div>
-        </section>
-
-        <!-- 工具区 -->
-        <section class="section fade-in" id="tools">
-            <div class="section-header">
-                <span class="section-label">/tools</span>
-                <h2 class="section-title">顺手的小工具</h2>
-                <p class="section-desc">每个工具都源于一次"要是有个东西能帮我…"的念头</p>
-            </div>
-            <div class="tools-grid">
-                <a href="#" class="tool-card" title="JSON 格式化工具">
-                    <div class="tool-icon"><span class="emoji">📋</span></div>
-                    <span class="tool-name">JSON 美化</span>
-                    <span class="tool-desc">让杂乱的数据整齐如诗行，一目了然</span>
-                    <span class="tool-tag">格式化</span>
+            <div class="hero-social">
+                <a href="https://github.com/Ice-rink" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="#" class="tool-card" title="时间戳转换工具">
-                    <div class="tool-icon"><span class="emoji">⏰</span></div>
-                    <span class="tool-name">时间戳转换</span>
-                    <span class="tool-desc">读懂时间的另一种语言，秒级互转</span>
-                    <span class="tool-tag">日期</span>
+                <a href="mailto:ice_rink@example.com">
+                    <i class="far fa-envelope"></i> Email
                 </a>
-                <a href="#" class="tool-card" title="Base64 编解码">
-                    <div class="tool-icon"><span class="emoji">🔐</span></div>
-                    <span class="tool-name">Base64 编解码</span>
-                    <span class="tool-desc">字符的隐身术与现形记，一键切换</span>
-                    <span class="tool-tag">编码</span>
-                </a>
-                <a href="#" class="tool-card" title="正则表达式测试">
-                    <div class="tool-icon"><span class="emoji">🔍</span></div>
-                    <span class="tool-name">正则测试器</span>
-                    <span class="tool-desc">捕捉文本中的规律，像侦探一样精准</span>
-                    <span class="tool-tag">匹配</span>
-                </a>
-                <a href="#" class="tool-card" title="颜色转换工具">
-                    <div class="tool-icon"><span class="emoji">🎨</span></div>
-                    <span class="tool-name">颜色转换</span>
-                    <span class="tool-desc">HEX、RGB、HSL 随心切换，调出心仪色</span>
-                    <span class="tool-tag">设计</span>
-                </a>
-                <a href="#" class="tool-card" title="Markdown 预览">
-                    <div class="tool-icon"><span class="emoji">📝</span></div>
-                    <span class="tool-name">Markdown 预览</span>
-                    <span class="tool-desc">写你所想，即时预览，所见即所得</span>
-                    <span class="tool-tag">编辑</span>
+                <a href="#blog">
+                    <i class="fas fa-feather-alt"></i> 博客
                 </a>
             </div>
         </section>
 
-        <!-- 博客区 -->
-        <section class="section fade-in" id="blog">
-            <div class="section-header">
-                <span class="section-label">/blog</span>
-                <h2 class="section-title">最近的碎碎念</h2>
-                <p class="section-desc">技术笔记 · 踩坑记录 · 偶尔的生活灵感</p>
+        <!-- 博客区域 -->
+        <section class="section container" id="blog" data-aos="fade-up" data-aos-duration="700">
+            <h2 class="section-title">📝 最新博文</h2>
+            <p class="section-desc">用文字记录技术路上的小发现与小确幸</p>
+            <div class="blog-grid" id="blogGrid">
+                <div class="blog-loading" id="blogLoading">
+                    <span style="font-size:1.5rem;">🌸</span>
+                    <p style="margin-top:6px;">正在加载文章...</p>
+                </div>
             </div>
-            <div class="blog-grid">
-                <a href="#" class="blog-card">
-                    <div class="blog-card-image">
-                        <span class="blog-emoji">🔄</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span>2026-05-12</span><span>·</span><span>6 min</span>
-                        </div>
-                        <h3 class="blog-card-title">重构那点事：如何优雅地与旧代码和解</h3>
-                        <p class="blog-card-excerpt">面对祖传代码时，少一些抱怨，多一些策略。记录一次渐进式重构的心得。</p>
-                        <span class="blog-card-tag"># 工程实践</span>
-                    </div>
-                </a>
-                <a href="#" class="blog-card">
-                    <div class="blog-card-image">
-                        <span class="blog-emoji">🧩</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span>2026-04-28</span><span>·</span><span>8 min</span>
-                        </div>
-                        <h3 class="blog-card-title">用 CSS 变量打造灵动主题切换</h3>
-                        <p class="blog-card-excerpt">从硬编码到动态主题，聊聊 CSS 自定义属性的巧妙用法与暗色模式适配。</p>
-                        <span class="blog-card-tag"># 前端</span>
-                    </div>
-                </a>
-                <a href="#" class="blog-card">
-                    <div class="blog-card-image">
-                        <span class="blog-emoji">☕</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span>2026-04-10</span><span>·</span><span>5 min</span>
-                        </div>
-                        <h3 class="blog-card-title">个人工具站的从零到一</h3>
-                        <p class="blog-card-excerpt">为什么要自己造轮子？聊聊搭建个人工具站背后的动机与技术选型。</p>
-                        <span class="blog-card-tag"># 独立开发</span>
-                    </div>
+            <div class="blog-more">
+                <a href="blog/index.html" class="btn btn-outline">
+                    <i class="fas fa-list"></i> 查看全部文章
                 </a>
             </div>
         </section>
 
-        <!-- 关于区 -->
-        <section class="section fade-in" id="about">
-            <div class="section-header">
-                <span class="section-label">/about</span>
-                <h2 class="section-title">关于这个角落</h2>
-            </div>
-            <div class="about">
-                <p>
-                    嗨，我是 <strong>Lin</strong>——一个喜欢在深夜写代码、在清晨调试的开发者。<br>
-                    这个站点诞生于一个简单的想法：<em>"把常用的工具放在手边，把想说的话记下来。"</em><br>
-                    没有复杂的框架，没有冗余的依赖，只有纯粹而温暖的技术实践。<br>
-                    希望这里的小工具能帮到你，也希望我的文字能给你带来一丝灵感。
-                </p>
-                <p class="signature">— Lin · 写于某个安静的午后 ☕</p>
-            </div>
+        <!-- 工具区域 -->
+        <section class="section container" id="tools" data-aos="fade-up" data-aos-duration="700">
+            <h2 class="section-title">🛠️ 实用小工具</h2>
+            <p class="section-desc">一些轻量级在线工具，让日常开发更顺手</p>
+            <div class="tool-grid" id="toolGrid"></div>
+            <div class="tool-panel" id="toolPanel"></div>
         </section>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <p>© 2026 Lin's Nook &nbsp;·&nbsp; 用 <span class="heart">♥</span> 构建 &nbsp;·&nbsp; 保留所有温暖</p>
+    <footer class="footer" data-aos="fade-up" data-aos-duration="700">
+        <p>Made with <span class="footer-heart">💗</span> by <a href="https://github.com/Ice-rink" target="_blank"
+                rel="noopener">Ice_rink</a> · 冰凌呀</p>
+        <p style="margin-top:4px;font-size:0.78rem;">© 2026 Ice_rink · 保持好奇，保持温柔</p>
     </footer>
 
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部" title="回到顶部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
     <script>
-        (function() {
-            // ========== DOM 引用 ==========
-            const navbar = document.getElementById('navbar');
-            const hamburger = document.getElementById('hamburger');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const themeToggle = document.getElementById('themeToggle');
-            const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
-            const fadeEls = document.querySelectorAll('.fade-in');
-            const typewriterEl = document.getElementById('typewriterText');
+        (function () {
+            AOS.init({ duration: 700, once: true, offset: 60 });
 
-            // ========== 打字机效果 ==========
-            const phrases = [
-                '用代码，给生活加点糖。',
-                '把灵感敲进每一行注释里。',
-                '工具虽小，心意很满。',
-                '写干净的代码，过温暖的日子。',
-                '在 0 和 1 之间，留一点人情味。',
-                '每一次调试，都是与自己的对话。',
-            ];
-            let phraseIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let typewriterTimeout;
+            // ===== 樱花飘落 =====
+            const sakuraContainer = document.getElementById('sakuraContainer');
+            const petalEmojis = ['🌸', '💮', '🌷', '✿', '❀', '🩷', '🌺'];
+            const petalCount = 22;
 
-            function typeWriter() {
-                const currentPhrase = phrases[phraseIndex];
-                if (isDeleting) {
-                    charIndex--;
-                    typewriterEl.textContent = currentPhrase.substring(0, charIndex);
-                } else {
-                    charIndex++;
-                    typewriterEl.textContent = currentPhrase.substring(0, charIndex);
-                }
-
-                let speed = isDeleting ? 40 : 70;
-
-                if (!isDeleting && charIndex === currentPhrase.length) {
-                    // 打完停顿
-                    speed = 2000;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    speed = 400;
-                }
-
-                typewriterTimeout = setTimeout(typeWriter, speed);
+            function createPetal() {
+                const petal = document.createElement('span');
+                petal.className = 'sakura-petal';
+                petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+                petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                petal.style.animationDelay = Math.random() * 8 + 's';
+                sakuraContainer.appendChild(petal);
+                petal.addEventListener('animationend', () => {
+                    petal.remove();
+                    createPetal();
+                });
             }
-            typeWriter();
-
-            // ========== 主题切换 ==========
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
+            for (let i = 0; i < petalCount; i++) {
+                setTimeout(createPetal, i * 400);
             }
 
-            themeToggle.addEventListener('click', () => {
-                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                if (isDark) {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.textContent = '🌙';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.textContent = '☀️';
-                }
+            // ===== Typed.js =====
+            const typed = new Typed('#typedOutput', {
+                strings: [
+                    '「代码是诗，温柔是答案。」',
+                    '「在0和1的世界里，种一朵花。」',
+                    '「Bug会修好，明天会更好 ^_^」',
+                    '「保持好奇，保持温柔。」',
+                ],
+                typeSpeed: 70,
+                backSpeed: 40,
+                backDelay: 2500,
+                startDelay: 600,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|',
             });
 
-            // ========== 导航滚动阴影 ==========
-            function updateNavShadow() {
-                if (window.scrollY > 10) {
-                    navbar.classList.add('scrolled');
+            // ===== 汉堡菜单 =====
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            hamburgerBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                const icon = hamburgerBtn.querySelector('i');
+                if (navLinks.classList.contains('open')) {
+                    icon.className = 'fas fa-times';
                 } else {
-                    navbar.classList.remove('scrolled');
-                }
-            }
-            window.addEventListener('scroll', updateNavShadow, { passive: true });
-            updateNavShadow();
-
-            // ========== 移动端菜单 ==========
-            function closeMobileMenu() {
-                mobileMenu.classList.remove('open');
-                hamburger.classList.remove('open');
-            }
-
-            function openMobileMenu() {
-                mobileMenu.classList.add('open');
-                hamburger.classList.add('open');
-            }
-
-            hamburger.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                } else {
-                    openMobileMenu();
+                    icon.className = 'fas fa-bars';
                 }
             });
-
-            // 点击移动端菜单链接后关闭
-            mobileMenu.querySelectorAll('a').forEach(link => {
+            navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    closeMobileMenu();
+                    navLinks.classList.remove('open');
+                    hamburgerBtn.querySelector('i').className = 'fas fa-bars';
+                    navLinks.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
                 });
             });
 
-            // 点击页面其他区域关闭移动菜单
-            document.addEventListener('click', (e) => {
-                if (
-                    mobileMenu.classList.contains('open') &&
-                    !mobileMenu.contains(e.target) &&
-                    !hamburger.contains(e.target)
-                ) {
-                    closeMobileMenu();
+            // ===== 回到顶部 =====
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
                 }
             });
-
-            // 窗口大小变化时关闭移动菜单
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 600 && mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                }
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // ========== 导航高亮（滚动监听） ==========
-            const sections = {};
-            navLinks.forEach(link => {
-                const sectionId = link.getAttribute('data-section');
-                if (sectionId) {
-                    const el = document.getElementById(sectionId);
-                    if (el) sections[sectionId] = el;
+            // ===== Front Matter 解析 =====
+            function parseFrontMatter(mdText) {
+                const result = { meta: {}, content: '' };
+                const fmRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+                const match = mdText.match(fmRegex);
+                if (match) {
+                    const fmBlock = match[1];
+                    result.content = match[2].trim();
+                    fmBlock.split('\n').forEach(line => {
+                        const colonIdx = line.indexOf(':');
+                        if (colonIdx === -1) return;
+                        const key = line.substring(0, colonIdx).trim();
+                        let value = line.substring(colonIdx + 1).trim();
+                        value = value.replace(/^["']|["']$/g, '');
+                        if (value.startsWith('[') && value.endsWith(']')) {
+                            try { value = JSON.parse(value); } catch (e) { }
+                        }
+                        result.meta[key] = value;
+                    });
+                } else {
+                    result.content = mdText.trim();
                 }
-            });
-
-            function updateActiveNav() {
-                let currentSection = 'home';
-                const scrollPos = window.scrollY + 120;
-
-                Object.entries(sections).forEach(([id, el]) => {
-                    if (el.offsetTop <= scrollPos) {
-                        currentSection = id;
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    const sectionId = link.getAttribute('data-section');
-                    if (sectionId === currentSection) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
+                return result;
             }
-            window.addEventListener('scroll', updateActiveNav, { passive: true });
-            updateActiveNav();
 
-            // ========== 滚动淡入动画 ==========
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -40px 0px',
-                threshold: 0.1,
-            };
+            // ===== 提取摘要 =====
+            function extractExcerpt(markdownContent, maxLen = 120) {
+                let text = markdownContent
+                    .replace(/^#{1,6}\s+/gm, '')
+                    .replace(/\*\*([^*]+)\*\*/g, '$1')
+                    .replace(/\*([^*]+)\*/g, '$1')
+                    .replace(/`([^`]+)`/g, '$1')
+                    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                    .replace(/!\[.*?\]\([^)]+\)/g, '')
+                    .replace(/\n+/g, ' ')
+                    .trim();
+                if (text.length > maxLen) {
+                    text = text.substring(0, maxLen).replace(/\s+\S*$/, '') + '...';
+                }
+                return text;
+            }
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+            // ===== 异步加载最新4篇文章 =====
+            async function loadLatestPosts() {
+                const blogGrid = document.getElementById('blogGrid');
+                const loadingEl = document.getElementById('blogLoading');
+
+                const posts = [];
+
+                // 尝试加载 001.md ~ 030.md
+                for (let i = 1; i <= 30; i++) {
+                    const filename = String(i).padStart(3, '0') + '.md';
+                    try {
+                        const response = await fetch(`blog/posts/${filename}`);
+                        if (!response.ok) continue;
+                        const mdText = await response.text();
+                        const parsed = parseFrontMatter(mdText);
+                        posts.push({
+                            id: filename.replace('.md', ''),
+                            ...parsed.meta,
+                            excerpt: extractExcerpt(parsed.content),
+                        });
+                    } catch (e) {
+                        continue;
                     }
-                });
-            }, observerOptions);
+                }
 
-            fadeEls.forEach(el => observer.observe(el));
+                // 按日期降序排序
+                posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
-            // ========== 清理 ==========
-            // 页面卸载时清理定时器
-            window.addEventListener('beforeunload', () => {
-                clearTimeout(typewriterTimeout);
+                // 取最新4篇
+                const latest = posts.slice(0, 4);
+
+                // 移除加载提示
+                loadingEl.remove();
+
+                if (latest.length === 0) {
+                    blogGrid.innerHTML = '<div class="blog-loading"><p>📭 还没有文章，快去写第一篇吧~</p></div>';
+                    return;
+                }
+
+                blogGrid.innerHTML = latest.map((post, i) => {
+                    const tags = Array.isArray(post.tags) ? post.tags :
+                        (typeof post.tags === 'string' ? [post.tags] : []);
+                    return `
+                    <div class="card blog-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="${i * 80}">
+                        <div class="blog-tags">
+                            ${tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}
+                        </div>
+                        <h3><a href="blog/post.html?id=${post.id}">${post.title || '无标题'}</a></h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> ${post.date || ''}</span>
+                        </div>
+                        <p class="blog-excerpt">${post.excerpt || '(暂无摘要)'}</p>
+                    </div>
+                    `;
+                }).join('');
+
+                AOS.refresh();
+            }
+
+            // 启动博客加载
+            loadLatestPosts();
+
+            // ===== 工具数据和面板（保持不变） =====
+            const tools = [
+                { id: 'json-formatter', icon: '🔧', name: 'JSON 格式化', desc: '美化 / 压缩 JSON 数据', color: '#FADADD' },
+                { id: 'regex-tester', icon: '🔍', name: '正则测试器', desc: '在线正则表达式匹配', color: '#E8D5F5' },
+                { id: 'color-converter', icon: '🎨', name: '颜色转换', desc: 'HEX ↔ RGB ↔ HSL', color: '#D4EAF7' },
+                { id: 'timestamp', icon: '⏰', name: '时间戳转换', desc: 'Unix 时间戳 ↔ 日期', color: '#FDE4D0' },
+                { id: 'base64', icon: '🔐', name: 'Base64 编解码', desc: '文本 ↔ Base64', color: '#D4F0E0' },
+                { id: 'word-count', icon: '📊', name: '字数统计', desc: '中英文混合计数', color: '#FADADD' },
+            ];
+
+            function renderTools() {
+                const grid = document.getElementById('toolGrid');
+                grid.innerHTML = tools.map((tool, i) => `
+                <div class="card tool-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="${i * 80}" data-tool="${tool.id}" style="border-left: 4px solid ${tool.color};">
+                  <span class="tool-icon">${tool.icon}</span>
+                  <h4>${tool.name}</h4>
+                  <p>${tool.desc}</p>
+                </div>
+              `).join('');
+                AOS.refresh();
+            }
+            renderTools();
+
+            const toolPanel = document.getElementById('toolPanel');
+            let currentTool = null;
+
+            document.getElementById('toolGrid').addEventListener('click', (e) => {
+                const card = e.target.closest('.tool-card');
+                if (!card) return;
+                const toolId = card.dataset.tool;
+                if (currentTool === toolId && toolPanel.classList.contains('active')) {
+                    toolPanel.classList.remove('active');
+                    currentTool = null;
+                    return;
+                }
+                currentTool = toolId;
+                toolPanel.classList.add('active');
+                toolPanel.innerHTML = getToolHTML(toolId);
+                toolPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                initToolEvents(toolId);
             });
+
+            function getToolHTML(toolId) {
+                const tool = tools.find(t => t.id === toolId);
+                const title = tool ? tool.name : '工具';
+                switch (toolId) {
+                    case 'json-formatter':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>🔧</span> JSON 格式化
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="jsonInput">输入 JSON 数据：</label>
+                      <textarea id="jsonInput" placeholder='{"name":"冰凌呀","emoji":"❄️"}'></textarea>
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnFormat">✨ 格式化</button>
+                      <button class="btn btn-secondary" id="btnMinify">📦 压缩</button>
+                      <button class="btn btn-secondary" id="btnValidate">✅ 验证</button>
+                      <button class="btn btn-secondary" id="btnClear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="jsonOutput" style="display:none;"></div>
+                  </div>`;
+                    case 'regex-tester':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>🔍</span> 正则测试器
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="regexPattern">正则表达式（不带前后斜杠）：</label>
+                      <input type="text" id="regexPattern" placeholder="例如：\\d{4}-\\d{2}-\\d{2}">
+                    </div>
+                    <div class="form-group">
+                      <label for="regexFlags">标志（可选）：</label>
+                      <input type="text" id="regexFlags" placeholder="例如：g、i、gi" style="max-width:120px;">
+                    </div>
+                    <div class="form-group">
+                      <label for="regexText">测试文本：</label>
+                      <textarea id="regexText" placeholder="输入要匹配的文本..."></textarea>
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnRegexMatch">🔍 匹配</button>
+                      <button class="btn btn-secondary" id="btnRegexClear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="regexOutput" style="display:none;"></div>
+                  </div>`;
+                    case 'color-converter':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>🎨</span> 颜色转换
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="colorInput">输入颜色值：</label>
+                      <input type="text" id="colorInput" placeholder="例如：#FADADD 或 rgb(250,218,221) 或 hsl(350,76%,92%)">
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnConvert">🎨 转换</button>
+                      <button class="btn btn-secondary" id="btnColorClear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="colorOutput" style="display:none;"></div>
+                  </div>`;
+                    case 'timestamp':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>⏰</span> 时间戳转换
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="tsInput">输入 Unix 时间戳（秒）或日期字符串：</label>
+                      <input type="text" id="tsInput" placeholder="例如：1747612800 或 2026-05-19">
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnTsConvert">⏰ 转换</button>
+                      <button class="btn btn-secondary" id="btnTsNow">🕐 当前时间戳</button>
+                      <button class="btn btn-secondary" id="btnTsClear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="tsOutput" style="display:none;"></div>
+                  </div>`;
+                    case 'base64':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>🔐</span> Base64 编解码
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="b64Input">输入文本：</label>
+                      <textarea id="b64Input" placeholder="输入要编码/解码的文本..."></textarea>
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnB64Encode">🔒 编码 (Encode)</button>
+                      <button class="btn btn-secondary" id="btnB64Decode">🔓 解码 (Decode)</button>
+                      <button class="btn btn-secondary" id="btnB64Clear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="b64Output" style="display:none;"></div>
+                  </div>`;
+                    case 'word-count':
+                        return `
+                  <div class="card" data-aos="fade-up" data-aos-duration="400">
+                    <h4 style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                      <span>📊</span> 字数统计
+                      <button class="btn btn-secondary" style="margin-left:auto;padding:6px 14px;font-size:0.8rem;" onclick="document.getElementById('toolPanel').classList.remove('active');currentTool=null;">
+                        ✕ 关闭
+                      </button>
+                    </h4>
+                    <div class="form-group">
+                      <label for="wcInput">输入文本：</label>
+                      <textarea id="wcInput" placeholder="输入要统计的文本..."></textarea>
+                    </div>
+                    <div class="btn-group">
+                      <button class="btn btn-primary" id="btnWcCount">📊 统计</button>
+                      <button class="btn btn-secondary" id="btnWcClear">🗑 清空</button>
+                    </div>
+                    <div class="tool-output" id="wcOutput" style="display:none;"></div>
+                  </div>`;
+                    default:
+                        return '';
+                }
+            }
+
+            function initToolEvents(toolId) {
+                switch (toolId) {
+                    case 'json-formatter': {
+                        const input = document.getElementById('jsonInput');
+                        const output = document.getElementById('jsonOutput');
+                        document.getElementById('btnFormat').addEventListener('click', () => {
+                            try {
+                                const obj = JSON.parse(input.value);
+                                output.textContent = JSON.stringify(obj, null, 2);
+                                output.style.display = 'block';
+                                output.style.color = 'var(--text-primary)';
+                            } catch (e) {
+                                output.textContent = '❌ JSON 格式错误：' + e.message;
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnMinify').addEventListener('click', () => {
+                            try {
+                                const obj = JSON.parse(input.value);
+                                output.textContent = JSON.stringify(obj);
+                                output.style.display = 'block';
+                                output.style.color = 'var(--text-primary)';
+                            } catch (e) {
+                                output.textContent = '❌ JSON 格式错误：' + e.message;
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnValidate').addEventListener('click', () => {
+                            try {
+                                JSON.parse(input.value);
+                                output.textContent = '✅ JSON 格式正确！';
+                                output.style.display = 'block';
+                                output.style.color = '#6B9E7A';
+                            } catch (e) {
+                                output.textContent = '❌ JSON 格式错误：' + e.message;
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnClear').addEventListener('click', () => {
+                            input.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                    case 'regex-tester': {
+                        const patternInput = document.getElementById('regexPattern');
+                        const flagsInput = document.getElementById('regexFlags');
+                        const textInput = document.getElementById('regexText');
+                        const output = document.getElementById('regexOutput');
+                        document.getElementById('btnRegexMatch').addEventListener('click', () => {
+                            try {
+                                const pattern = patternInput.value;
+                                const flags = flagsInput.value || '';
+                                const text = textInput.value;
+                                if (!pattern) {
+                                    output.textContent = '⚠️ 请输入正则表达式';
+                                    output.style.display = 'block';
+                                    output.style.color = '#E88D9B';
+                                    return;
+                                }
+                                const regex = new RegExp(pattern, flags);
+                                const matches = [...text.matchAll(regex)];
+                                if (matches.length === 0) {
+                                    output.textContent = 'ℹ️ 没有匹配到任何内容';
+                                    output.style.display = 'block';
+                                    output.style.color = 'var(--text-secondary)';
+                                } else {
+                                    output.innerHTML = matches.map((m, i) =>
+                                        `匹配 ${i + 1}: <strong>${m[0]}</strong> (位置: ${m.index})` +
+                                        (m.groups ? '<br>命名分组: ' + JSON.stringify(m.groups) : '')
+                                    ).join('<br>');
+                                    output.style.display = 'block';
+                                    output.style.color = 'var(--text-primary)';
+                                }
+                            } catch (e) {
+                                output.textContent = '❌ 正则表达式错误：' + e.message;
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnRegexClear').addEventListener('click', () => {
+                            patternInput.value = '';
+                            flagsInput.value = '';
+                            textInput.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                    case 'color-converter': {
+                        const input = document.getElementById('colorInput');
+                        const output = document.getElementById('colorOutput');
+                        document.getElementById('btnConvert').addEventListener('click', () => {
+                            const val = input.value.trim();
+                            if (!val) {
+                                output.textContent = '⚠️ 请输入颜色值';
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                                return;
+                            }
+                            const canvas = document.createElement('canvas');
+                            canvas.width = 1;
+                            canvas.height = 1;
+                            const ctx = canvas.getContext('2d');
+                            ctx.fillStyle = val;
+                            try {
+                                const computed = ctx.fillStyle;
+                                if (computed === '#000000' && !val.toLowerCase().includes('black') &&
+                                    !val.startsWith('#000') && val !== 'rgb(0,0,0)' && val !== 'rgb(0, 0, 0)') {
+                                    if (!/^#|rgb|hsl/i.test(val)) throw new Error('无法解析');
+                                }
+                                const match = computed.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                                if (match) {
+                                    const r = parseInt(match[1]);
+                                    const g = parseInt(match[2]);
+                                    const b = parseInt(match[3]);
+                                    const hex = '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+                                    const hsl = rgbToHsl(r, g, b);
+                                    output.innerHTML = `
+                      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                        <div style="width:50px;height:50px;border-radius:12px;background:${computed};border:2px solid #ddd;flex-shrink:0;"></div>
+                        <div>
+                          <strong>HEX:</strong> ${hex}<br>
+                          <strong>RGB:</strong> rgb(${r}, ${g}, ${b})<br>
+                          <strong>HSL:</strong> hsl(${hsl.h}°, ${hsl.s}%, ${hsl.l}%)
+                        </div>
+                      </div>`;
+                                    output.style.display = 'block';
+                                    output.style.color = 'var(--text-primary)';
+                                }
+                            } catch (e) {
+                                output.textContent = '❌ 无法解析该颜色值，请检查格式';
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnColorClear').addEventListener('click', () => {
+                            input.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                    case 'timestamp': {
+                        const input = document.getElementById('tsInput');
+                        const output = document.getElementById('tsOutput');
+                        document.getElementById('btnTsConvert').addEventListener('click', () => {
+                            const val = input.value.trim();
+                            if (!val) {
+                                output.textContent = '⚠️ 请输入时间戳或日期';
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                                return;
+                            }
+                            if (/^\d+$/.test(val)) {
+                                const ts = parseInt(val);
+                                const date = new Date(ts * 1000);
+                                output.innerHTML = `
+                    <strong>时间戳（秒）：</strong> ${ts}<br>
+                    <strong>UTC 时间：</strong> ${date.toUTCString()}<br>
+                    <strong>本地时间：</strong> ${date.toLocaleString('zh-CN')}<br>
+                    <strong>ISO 格式：</strong> ${date.toISOString()}`;
+                            } else {
+                                const date = new Date(val);
+                                if (isNaN(date.getTime())) {
+                                    output.textContent = '❌ 无法解析该日期字符串';
+                                    output.style.color = '#E88D9B';
+                                } else {
+                                    output.innerHTML = `
+                    <strong>本地时间：</strong> ${date.toLocaleString('zh-CN')}<br>
+                    <strong>UTC 时间：</strong> ${date.toUTCString()}<br>
+                    <strong>时间戳（秒）：</strong> ${Math.floor(date.getTime() / 1000)}<br>
+                    <strong>时间戳（毫秒）：</strong> ${date.getTime()}`;
+                                }
+                            }
+                            output.style.display = 'block';
+                            output.style.color = 'var(--text-primary)';
+                        });
+                        document.getElementById('btnTsNow').addEventListener('click', () => {
+                            const now = Math.floor(Date.now() / 1000);
+                            input.value = now;
+                            const date = new Date(now * 1000);
+                            output.innerHTML = `
+                  <strong>当前时间戳（秒）：</strong> ${now}<br>
+                  <strong>本地时间：</strong> ${date.toLocaleString('zh-CN')}<br>
+                  <strong>UTC 时间：</strong> ${date.toUTCString()}`;
+                            output.style.display = 'block';
+                            output.style.color = 'var(--text-primary)';
+                        });
+                        document.getElementById('btnTsClear').addEventListener('click', () => {
+                            input.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                    case 'base64': {
+                        const input = document.getElementById('b64Input');
+                        const output = document.getElementById('b64Output');
+                        document.getElementById('btnB64Encode').addEventListener('click', () => {
+                            try {
+                                output.textContent = btoa(unescape(encodeURIComponent(input.value)));
+                                output.style.display = 'block';
+                                output.style.color = 'var(--text-primary)';
+                            } catch (e) {
+                                output.textContent = '❌ 编码失败：' + e.message;
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnB64Decode').addEventListener('click', () => {
+                            try {
+                                output.textContent = decodeURIComponent(escape(atob(input.value)));
+                                output.style.display = 'block';
+                                output.style.color = 'var(--text-primary)';
+                            } catch (e) {
+                                output.textContent = '❌ 解码失败，请确认输入为有效的 Base64 字符串';
+                                output.style.display = 'block';
+                                output.style.color = '#E88D9B';
+                            }
+                        });
+                        document.getElementById('btnB64Clear').addEventListener('click', () => {
+                            input.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                    case 'word-count': {
+                        const input = document.getElementById('wcInput');
+                        const output = document.getElementById('wcOutput');
+                        document.getElementById('btnWcCount').addEventListener('click', () => {
+                            const text = input.value;
+                            const charCount = text.length;
+                            const charNoSpace = text.replace(/\s/g, '').length;
+                            const chineseChars = (text.match(/[\u4e00-\u9fff]/g) || []).length;
+                            const englishWords = (text.match(/[a-zA-Z]+/g) || []).length;
+                            const lines = text.split(/\n/).length;
+                            const paragraphs = text.split(/\n\n+/).filter(p => p.trim()).length;
+                            output.innerHTML = `
+                  <strong>总字符数（含空格）：</strong> ${charCount}<br>
+                  <strong>总字符数（不含空格）：</strong> ${charNoSpace}<br>
+                  <strong>中文字符数：</strong> ${chineseChars}<br>
+                  <strong>英文单词数：</strong> ${englishWords}<br>
+                  <strong>行数：</strong> ${lines}<br>
+                  <strong>段落数：</strong> ${paragraphs}`;
+                            output.style.display = 'block';
+                            output.style.color = 'var(--text-primary)';
+                        });
+                        document.getElementById('btnWcClear').addEventListener('click', () => {
+                            input.value = '';
+                            output.style.display = 'none';
+                        });
+                        break;
+                    }
+                }
+            }
+
+            function rgbToHsl(r, g, b) {
+                r /= 255;
+                g /= 255;
+                b /= 255;
+                const max = Math.max(r, g, b),
+                    min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r:
+                            h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+                            break;
+                        case g:
+                            h = ((b - r) / d + 2) / 6;
+                            break;
+                        case b:
+                            h = ((r - g) / d + 4) / 6;
+                            break;
+                    }
+                }
+                return {
+                    h: Math.round(h * 360),
+                    s: Math.round(s * 100),
+                    l: Math.round(l * 100),
+                };
+            }
+
+            console.log('❄️ 冰凌呀 · 小栈 已就绪 ~');
+            console.log('💗 感谢你的来访，愿你在这里找到一份温柔的技术时光。');
         })();
     </script>
 </body>
