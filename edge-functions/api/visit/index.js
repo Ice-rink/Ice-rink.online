@@ -51,16 +51,16 @@ export async function onRequest({ request, env }) {
 
     // ========== 模式3：查找模式（获取所有匹配前缀的键） ==========
     if (mode === 'find') {
-        // EdgeOne KV 支持 list 方法列出所有键
-        const list = await counter.list({ prefix: prefix });
-        const result = {};
+        const result = await counter.list({ prefix: prefix });
+        const kvList = result.keys;
 
-        for (const item of list.keys) {
+        const resultData = {};
+        for (const item of kvList) {
             const value = await counter.get(item.name);
-            result[item.name] = value !== null ? Number(value) : 0;
+            resultData[item.name] = value !== null ? Number(value) : 0;
         }
 
-        return new Response(JSON.stringify(result), {
+        return new Response(JSON.stringify(resultData), {
             headers: { 'Content-Type': 'application/json' }
         });
     }
