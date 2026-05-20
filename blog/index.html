@@ -390,49 +390,51 @@
             AOS.init({ duration: 700, once: true });
 
             // ========== 加载所有文章 ==========
-            async function loadAllPosts() {
-                const postFiles = [];
-                for (let i = 1; i <= 50; i++) {
-                    postFiles.push(String(i).padStart(3, '0') + '.md');
-                }
-
-                const posts = [];
-                const loadingEl = document.getElementById('loading');
-                const blogListEl = document.getElementById('blogList');
-
-                const fetchPromises = postFiles.map(async (filename) => {
-                    try {
-                        const response = await fetch(`posts/${filename}`);
-                        if (!response.ok) return null;
-                        const mdText = await response.text();
-                        const parsed = parseFrontMatter(mdText);
-                        return {
-                            id: filename.replace('.md', ''),
-                            ...parsed.meta,
-                            content: parsed.content,
-                            excerpt: extractExcerpt(parsed.content),
-                        };
-                    } catch (e) {
-                        return null;
-                    }
-                });
-
-                const results = await Promise.all(fetchPromises);
-                results.forEach(r => { if (r) posts.push(r); });
-                posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-
-                loadingEl.style.display = 'none';
-                blogListEl.style.display = 'flex';
-
-                return posts;
-            }
-
-            // ========== 核心：多选标签筛选逻辑 ==========
             let allPosts = [];
-            let selectedTags = new Set();    // 当前选中的标签集合
+            let selectedTags = new Set();
             let searchTerm = '';
             let visibleCount = 8;
 
+            async function loadAllPosts() {
+                const loadingEl = document.getElementById('loading');
+                const blogListEl = document.getElementById('blogList');
+
+                try {
+                    const response = await fetch('postList.json');
+                    if (!response.ok) throw new Error('加载失败');
+
+                    allPosts = await response.json();
+
+                    // 按日期降序排序
+                    allPosts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+                    loadingEl.style.display = 'none';
+                    blogListEl.style.display = 'flex';
+
+                    // 初始化页面
+                    buildTagButtons();
+                    renderPosts();
+
+                    // 绑定搜索
+                    document.getElementById('searchInput').addEventListener('input', e => {
+                        searchTerm = e.target.value;
+                        visibleCount = 8;
+                        renderPosts();
+                    });
+
+                    // 加载更多
+                    document.getElementById('loadMoreBtn').addEventListener('click', () => {
+                        visibleCount += 8;
+                        renderPosts();
+                    });
+
+                } catch (error) {
+                    loadingEl.innerHTML = '<p>📭 文章列表加载失败，请刷新重试</p>';
+                }
+            }
+            loadAllPosts();
+
+            // ========== 核心：多选标签筛选逻辑 ==========
             // 统计所有标签
             function getAllTags() {
                 const tagCounts = {};

@@ -420,6 +420,11 @@
             <h2 class="section-title">🛠️ 实用小工具</h2>
             <p class="section-desc">一些轻量级在线工具，让日常开发更顺手</p>
             <div class="tool-grid" id="toolGrid"></div>
+            <div class="blog-more">
+                <a href="tools/" class="btn btn-outline">
+                    <i class="fas fa-list"></i> 查看全部工具
+                </a>
+            </div>
         </section>
 
         <!-- 博客区域 -->
@@ -454,7 +459,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
-    <script src="/tools/toolData.js"></script>
     <script src="/lib/all.js"></script>
     <script>
         (function () {
@@ -482,74 +486,66 @@
                 const blogGrid = document.getElementById('blogGrid');
                 const loadingEl = document.getElementById('blogLoading');
 
-                const posts = [];
+                try {
+                    const response = await fetch('blog/postList.json');
+                    if (!response.ok) throw new Error('加载失败');
+                    const posts = await response.json();
 
-                // 尝试加载 001.md ~ 030.md
-                for (let i = 1; i <= 30; i++) {
-                    const filename = String(i).padStart(3, '0') + '.md';
-                    try {
-                        const response = await fetch(`blog/posts/${filename}`);
-                        if (!response.ok) continue;
-                        const mdText = await response.text();
-                        const parsed = parseFrontMatter(mdText);
-                        posts.push({
-                            id: filename.replace('.md', ''),
-                            ...parsed.meta,
-                            excerpt: extractExcerpt(parsed.content),
-                        });
-                    } catch (e) {
-                        continue;
+                    // 按日期排序取最新4篇
+                    posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+                    const latest = posts.slice(0, 4);
+
+                    loadingEl.remove();
+
+                    if (latest.length === 0) {
+                        blogGrid.innerHTML = '<div class="blog-loading"><p>📭 还没有文章~</p></div>';
+                        return;
                     }
+
+                    blogGrid.innerHTML = latest.map((post, i) => {
+                        const tags = Array.isArray(post.tags) ? post.tags : [];
+                        return `
+                            <div class="card blog-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="${i * 80}">
+                                <div class="blog-tags">
+                                    ${tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}
+                                </div>
+                                <h3><a href="blog/post.html?id=${post.id}">${post.title || '无标题'}</a></h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> ${post.date || ''}</span>
+                                </div>
+                                <p class="blog-excerpt">${post.excerpt || '(暂无摘要)'}</p>
+                            </div>
+                        `;
+                    }).join('');
+
+                    AOS.refresh();
+                } catch (e) {
+                    loadingEl.innerHTML = '<div class="blog-loading"><p>📭 加载失败，请刷新</p></div>';
                 }
-
-                // 按日期降序排序
-                posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-
-                // 取最新4篇
-                const latest = posts.slice(0, 4);
-
-                // 移除加载提示
-                loadingEl.remove();
-
-                if (latest.length === 0) {
-                    blogGrid.innerHTML = '<div class="blog-loading"><p>📭 还没有文章，快去写第一篇吧~</p></div>';
-                    return;
-                }
-
-                blogGrid.innerHTML = latest.map((post, i) => {
-                    const tags = Array.isArray(post.tags) ? post.tags :
-                        (typeof post.tags === 'string' ? [post.tags] : []);
-                    return `
-                    <div class="card blog-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="${i * 80}">
-                        <div class="blog-tags">
-                            ${tags.map(t => `<span class="blog-tag">${t}</span>`).join('')}
-                        </div>
-                        <h3><a href="blog/post.html?id=${post.id}">${post.title || '无标题'}</a></h3>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> ${post.date || ''}</span>
-                        </div>
-                        <p class="blog-excerpt">${post.excerpt || '(暂无摘要)'}</p>
-                    </div>
-                    `;
-                }).join('');
-
-                AOS.refresh();
             }
 
-            // 启动博客加载
             loadLatestPosts();
 
             // ===== 工具数据和面板（保持不变） =====
-            // 从 toolData.js 取前5个工具
-            const tools = (typeof toolData !== 'undefined')
-                ? toolData.slice(0, 5).map(tool => ({
-                    id: tool.id,
-                    icon: tool.icon,
-                    name: tool.name,
-                    desc: tool.desc,
-                    color: getToolColor(tool.id) // 可选：根据工具id分配颜色
-                }))
-                : []; // 降级：如果加载失败则为空数组
+            let tools = [];
+
+            async function loadHomeTools() {
+                try {
+                    const res = await fetch('tools/toolData.json');
+                    const toolData = await res.json();
+                    tools = toolData.slice(0, 5).map(tool => ({
+                        id: tool.id,
+                        icon: tool.icon,
+                        name: tool.name,
+                        desc: tool.desc,
+                        color: getToolColor(tool.id)
+                    }));
+                    renderTools();
+                } catch (e) {
+                    console.error('工具加载失败', e);
+                }
+            }
+            loadHomeTools();
 
             // 辅助函数：给不同工具分配不同颜色（可选）
             function getToolColor(id) {
