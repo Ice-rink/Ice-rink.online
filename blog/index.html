@@ -400,7 +400,7 @@
                 const blogListEl = document.getElementById('blogList');
 
                 try {
-                    const response = await fetch('postList.json');
+                    const response = await fetch('/blog/postList.json');
                     if (!response.ok) throw new Error('加载失败');
 
                     allPosts = await response.json();
@@ -428,8 +428,10 @@
                         renderPosts();
                     });
 
+                    return allPosts;
                 } catch (error) {
                     loadingEl.innerHTML = '<p>📭 文章列表加载失败，请刷新重试</p>';
+                    return [];
                 }
             }
             loadAllPosts();
@@ -542,33 +544,30 @@
 
                 container.innerHTML = show.map((post, i) => {
                     const tags = Array.isArray(post.tags) ? post.tags : (typeof post.tags === 'string' ? [post.tags] : []);
-                    const pageUrl = `posts/${post.id}.md`;
 
                     return `
-                    <div class="blog-item" data-aos="fade-up" data-aos-delay="${i * 50}">
-                        <div class="post-main">
-                            <div class="post-title">
-                                <a href="post.html?id=${post.id}">${post.title || '无标题'}</a>
+                        <div class="blog-item" data-aos="fade-up" data-aos-delay="${i * 50}" data-post-id="${post.id}">
+                            <div class="post-main">
+                                <div class="post-title">
+                                    <a href="post.html?id=${post.id}">${post.title || '无标题'}</a>
+                                </div>
+                                <div class="post-meta">
+                                    <span><i class="far fa-calendar-alt"></i> ${post.date || '未标注日期'}</span>
+                                    <span class="views">
+                                        <i class="far fa-eye"></i>
+                                        <span class="view-count" data-id="${post.id}">加载中...</span>
+                                    </span>
+                                </div>
+                                <div class="post-tags">
+                                    ${tags.map(t => {
+                                        const isMatched = selectedTags.size > 0 && selectedTags.has(t);
+                                        return `<span class="post-tag${isMatched ? ' matched' : ''}" data-tag="${t}">${t}</span>`;
+                                    }).join('')}
+                                </div>
+                                <div class="post-excerpt">${post.excerpt || '(暂无摘要)'}</div>
                             </div>
-                            <div class="post-meta">
-                                <span><i class="far fa-calendar-alt"></i> ${post.date || '未标注日期'}</span>
-                                <span class="views">
-                                <i class="far fa-eye"></i>
-                                <span id="busuanzi_container_page_pv">
-                                    阅读 <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin"></i></span> 次
-                                </span>
-                            </span>
-                            </div>
-                            <div class="post-tags">
-                                ${tags.map(t => {
-                        const isMatched = selectedTags.size > 0 && selectedTags.has(t);
-                        return `<span class="post-tag${isMatched ? ' matched' : ''}" data-tag="${t}">${t}</span>`;
-                    }).join('')}
-                            </div>
-                            <div class="post-excerpt">${post.excerpt || '(暂无摘要)'}</div>
                         </div>
-                    </div>
-                `;
+                    `;
                 }).join('');
 
                 // 卡片内标签点击 → 切换多选
@@ -592,6 +591,32 @@
 
                 if (typeof busuanzi !== 'undefined' && busuanzi.fetch) {
                     busuanzi.fetch();
+                }
+            }
+
+            // 新增：批量加载文章浏览量
+            async function loadViewsForPosts(posts) {
+                if (!posts || posts.length === 0) return;
+
+                try {
+                    // 并行查询所有文章的浏览量（不计数）
+                    const promises = posts.map(key =>
+                        fetch(`/api/visit?mode=query&key=blog_${key}`)
+                            .then(res => res.json())
+                            .catch(() => ({ key, value: 0 }))
+                    );
+
+                    const results = await Promise.all(promises);
+
+                    // 更新页面显示
+                    results.forEach(result => {
+                        const viewSpan = document.querySelector(`.view-count[data-id="${result.key.replace('blog_', '')}"]`);
+                        if (viewSpan) {
+                            viewSpan.innerText = result.value;
+                        }
+                    });
+                } catch (error) {
+                    console.error('加载浏览量失败:', error);
                 }
             }
 
