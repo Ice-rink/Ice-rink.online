@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客 · 冰凌呀的小栈</title>
+    <title>冰凌の小栈 | 博客</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -544,7 +544,6 @@
 
                 container.innerHTML = show.map((post, i) => {
                     const tags = Array.isArray(post.tags) ? post.tags : (typeof post.tags === 'string' ? [post.tags] : []);
-
                     return `
                         <div class="blog-item" data-aos="fade-up" data-aos-delay="${i * 50}" data-post-id="${post.id}">
                             <div class="post-main">
@@ -560,9 +559,9 @@
                                 </div>
                                 <div class="post-tags">
                                     ${tags.map(t => {
-                                        const isMatched = selectedTags.size > 0 && selectedTags.has(t);
-                                        return `<span class="post-tag${isMatched ? ' matched' : ''}" data-tag="${t}">${t}</span>`;
-                                    }).join('')}
+                                    const isMatched = selectedTags.size > 0 && selectedTags.has(t);
+                                    return `<span class="post-tag${isMatched ? ' matched' : ''}" data-tag="${t}">${t}</span>`;
+                                }).join('')}
                                 </div>
                                 <div class="post-excerpt">${post.excerpt || '(暂无摘要)'}</div>
                             </div>
@@ -570,7 +569,7 @@
                     `;
                 }).join('');
 
-                // 卡片内标签点击 → 切换多选
+                // 标签点击事件
                 container.querySelectorAll('.post-tag').forEach(tagEl => {
                     tagEl.addEventListener('click', e => {
                         e.stopPropagation();
@@ -589,68 +588,42 @@
                 loadWrap.style.display = visibleCount >= filtered.length ? 'none' : 'block';
                 AOS.refresh();
 
-                if (typeof busuanzi !== 'undefined' && busuanzi.fetch) {
-                    busuanzi.fetch();
-                }
+                // ✅ 关键：调用浏览量加载
+                const postIds = show.map(post => post.id);
+                loadViewsForPosts(postIds);
             }
 
-            // 新增：批量加载文章浏览量
-            async function loadViewsForPosts(posts) {
-                if (!posts || posts.length === 0) return;
+            // 批量加载浏览量
+            async function loadViewsForPosts(postIds) {
+                if (!postIds || postIds.length === 0) return;
 
                 try {
-                    // 并行查询所有文章的浏览量（不计数）
-                    const promises = posts.map(key =>
-                        fetch(`/api/visit?mode=query&key=blog_${key}`)
+                    const promises = postIds.map(id =>
+                        fetch(`/api/visit?mode=query&key=blog_${id}`)
                             .then(res => res.json())
-                            .catch(() => ({ key, value: 0 }))
+                            .catch(() => ({ key: `blog_${id}`, value: 0 }))
                     );
 
                     const results = await Promise.all(promises);
 
-                    // 更新页面显示
                     results.forEach(result => {
-                        const viewSpan = document.querySelector(`.view-count[data-id="${result.key.replace('blog_', '')}"]`);
+                        const id = result.key.replace('blog_', '');
+                        const viewSpan = document.querySelector(`.view-count[data-id="${id}"]`);
                         if (viewSpan) {
                             viewSpan.innerText = result.value;
                         }
                     });
                 } catch (error) {
                     console.error('加载浏览量失败:', error);
+                    // 可选：显示占位符
+                    postIds.forEach(id => {
+                        const viewSpan = document.querySelector(`.view-count[data-id="${id}"]`);
+                        if (viewSpan && viewSpan.innerText === '加载中...') {
+                            viewSpan.innerText = '?';
+                        }
+                    });
                 }
             }
-
-            // ========== 启动 ==========
-            loadAllPosts().then(posts => {
-                allPosts = posts;
-                if (posts.length === 0) {
-                    document.getElementById('loading').innerHTML = '<p>📭 还没有文章，快去写第一篇吧~</p>';
-                    return;
-                }
-
-                // 检查 URL 参数 ?tag=xxx
-                const urlParams = new URLSearchParams(window.location.search);
-                const tagParam = urlParams.get('tag');
-                if (tagParam) {
-                    selectedTags.add(tagParam);
-                }
-
-                buildTagButtons();
-                renderPosts();
-
-                // 搜索
-                document.getElementById('searchInput').addEventListener('input', e => {
-                    searchTerm = e.target.value;
-                    visibleCount = 8;
-                    renderPosts();
-                });
-
-                // 加载更多
-                document.getElementById('loadMoreBtn').addEventListener('click', () => {
-                    visibleCount += 8;
-                    renderPosts();
-                });
-            });
 
         })();
     </script>

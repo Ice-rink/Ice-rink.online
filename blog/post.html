@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">文章 · 冰凌呀的小栈</title>
+    <title id="pageTitle">冰凌の小栈 | 文章</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -416,7 +416,7 @@
                     const parsed = parseFrontMatter(mdText);
 
                     // 更新页面标题
-                    document.title = `${parsed.meta.title || '文章'} · 冰凌呀的小栈`;
+                    document.title = `冰凌の小栈 | ${parsed.meta.title || '文章'}`;
                     document.getElementById('breadcrumbTitle').textContent = parsed.meta.title || '文章';
 
                     // 渲染 HTML
