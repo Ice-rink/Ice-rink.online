@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/visit",
+            "destination": "/edge-functions/api/visit/index.js"
+        }
+    ]
+}
