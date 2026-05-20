@@ -370,8 +370,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- 不蒜子浏览量统计 -->
-    <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
     </script>
@@ -440,9 +438,7 @@
                                     </span>
                                     <span class="meta-item meta-views">
                                         <i class="far fa-eye"></i>
-                                        <span id="busuanzi_container_page_pv">
-                                            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin"></i></span> 次阅读
-                                        </span>
+                                        <span id="visitor-count">0</span> 次阅读
                                     </span>
                                 </div>
                                 ${tags.length > 0 ? `
@@ -480,13 +476,30 @@
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     });
 
+                    // 在 loadPost 函数中，渲染完成后调用
+                    async function updateVisitorCount(postId) {
+                        const key = `blog_${postId}`;
+                        const countEl = document.getElementById('visitor-count');
+
+                        try {
+                            // 添加访问量（自动 +1）
+                            const addRes = await fetch(`/api/visit?mode=add&key=${key}`);
+                            const addData = await addRes.json();
+
+                            if (countEl) {
+                                countEl.innerText = addData.visits;
+                            }
+                        } catch (error) {
+                            console.error('浏览量统计失败:', error);
+                            if (countEl) {
+                                countEl.innerText = '-';
+                            }
+                        }
+                    }
+                    updateVisitorCount(postId);
+
                     // 刷新 AOS
                     AOS.refresh();
-
-                    // 不蒜子刷新
-                    if (typeof busuanzi !== 'undefined' && busuanzi.fetch) {
-                        busuanzi.fetch();
-                    }
 
                 } catch (error) {
                     showError('📄 文章加载失败', error.message);
