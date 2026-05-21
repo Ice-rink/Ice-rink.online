@@ -445,41 +445,51 @@
         </section>
     </main>
 
-    <!-- 评论 -->
-    <div id="twikoo-comments"></div>
+    <!-- 评论区 - Twikoo -->
+    <div class="twikoo-container" data-aos="fade-up">
+        <h3><i class="fas fa-comments"></i> 评论区</h3>
+        <div id="twikoo-comments"></div>
+    </div>
+    
+    <!-- Twikoo 脚本 -->
     <script src="https://cdn.jsdelivr.net/npm/twikoo@1.7.3/dist/twikoo.all.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // ⚠️ 警告：请务必将下面的 'https://twikoo.edgeone.dev/' 替换为你的实际后端地址
-            const YOUR_BACKEND_URL = 'https://twikoo.edgeone.dev/';
-
-            twikoo.init({
-                // envId 参数应填写你的部署后端地址
-                envId: YOUR_BACKEND_URL,
-
-                // 绑定评论容器，支持 CSS 选择器
-                el: '#twikoo-comments',
-
-                // 可选：管理区域路径（如果使用管理面板）
-                // adminPath: '/admin',
-
-                // 可选：自定义区域路径
-                // region: 'ap-shanghai',
-
-                // 可选：语言设置
-                // lang: 'zh-CN',
-            }).then(() => {
-                console.log('✅ 评论系统 Twikoo 加载成功');
-            }).catch((err) => {
-                console.error('❌ 评论系统 Twikoo 加载失败:', err);
-            });
-        });
+        (function () {
+            // 等待页面主要内容加载完成
+            function initTwikoo() {
+                if (typeof twikoo === 'undefined') {
+                    console.warn('Twikoo 未加载，稍后重试');
+                    setTimeout(initTwikoo, 500);
+                    return;
+                }
+                twikoo.init({
+                    // ⚠️ 请替换为你自己的后端地址
+                    envId: 'https://twikoo.ice-rink.online/',
+                    el: '#twikoo-comments',
+                    lang: 'zh-CN',
+                }).then(() => {
+                    console.log('✅ 评论系统已就绪');
+                }).catch(err => {
+                    console.error('❌ 评论系统加载失败:', err);
+                    // 可选：显示友好提示
+                    const el = document.getElementById('twikoo-comments');
+                    if (el) el.innerHTML = '<p style="text-align:center;color:var(--text-light);">💬 评论功能暂时不可用，请稍后再试～</p>';
+                });
+            }
+            // 确保 DOM 完全加载后再执行
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTwikoo);
+            } else {
+                initTwikoo();
+            }
+        })();
     </script>
+    
 
     <footer class="footer" data-aos="fade-up" data-aos-duration="700">
         <p style="margin-top:4px;font-size:0.78rem;">© 2026 Ice_rink · 保持好奇，保持温柔</p>
         <p>Made with <span class="footer-heart">💗</span> by <a href="https://github.com/Ice-rink" target="_blank"
-                rel="noopener">Ice_rink</a> · 冰凌呀 & <a href="https://chat.deepseek.com/" target="_blank"
+                rel="noopener">Ice_rink</a> · 冰凌呀 & <a href="https://deepseek.com/" target="_blank"
                 rel="noopener">DeepSeek</a> v4 Pro</p>
     </footer>
 
