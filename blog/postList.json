@@ -8,7 +8,7 @@
             "教程",
             "LeviLamina"
         ],
-        "excerpt": "从零开始，用 QYServer 核心插件在 LeviLamina 上搭建一个高性能的基岩版服务器。"
+        "excerpt": "从零开始，手把手教你用 LeviLamina 搭建一个高性能的 Minecraft 基岩版服务器，腐竹小白也能轻松上车～"
     },
     {
         "id": "002",
@@ -18,6 +18,6 @@
             "Node.js",
             "算法"
         ],
-        "excerpt": "如何设计一个高性能的敏感词过滤系统？"
+        "excerpt": "从零开始，用 Trie 树和 AC 自动机搭建一个又萌又快的敏感词过滤插件，小白也能看懂哦～"
     }
 ]
