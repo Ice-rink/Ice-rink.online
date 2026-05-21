@@ -346,7 +346,7 @@
             let allTools = [];
             async function loadTools() {
                 try {
-                    const response = await fetch('toolData.json');
+                    const response = await fetch('/tools/toolData.json');
                     if (!response.ok) throw new Error('加载失败');
                     allTools = await response.json();
 

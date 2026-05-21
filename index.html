@@ -531,7 +531,7 @@
 
             async function loadHomeTools() {
                 try {
-                    const res = await fetch('tools/toolData.json');
+                    const res = await fetch('/tools/toolData.json');
                     const toolData = await res.json();
                     tools = toolData.slice(0, 5).map(tool => ({
                         id: tool.id,
