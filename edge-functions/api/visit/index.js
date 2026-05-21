@@ -4,7 +4,7 @@ export async function onRequest({ request, env }) {
     const key = url.searchParams.get('key'); // 操作的键名
     const prefix = url.searchParams.get('prefix') || 'blog_'; // 查找模式用的前缀
 
-    // ========== 模式1：查询模式（不计数） ==========
+    // 查询
     if (mode === 'query') {
         if (!key) {
             return new Response(JSON.stringify({ error: '缺少 key 参数' }), {
@@ -22,7 +22,7 @@ export async function onRequest({ request, env }) {
         });
     }
 
-    // ========== 模式2：添加模式（计数 +1） ==========
+    // 添加
     if (mode === 'add') {
         if (!key) {
             return new Response(JSON.stringify({ error: '缺少 key 参数' }), {
@@ -49,7 +49,7 @@ export async function onRequest({ request, env }) {
         });
     }
 
-    // ========== 模式3：查找模式（获取所有匹配前缀的键） ==========
+    // 查找
     if (mode === 'find') {
         const result = await counter.list({ prefix: prefix });
         const kvList = result.keys;
