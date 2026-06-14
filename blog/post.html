@@ -158,6 +158,285 @@
             color: #fff;
         }
 
+        /* ========== 新评论系统样式 ========== */
+        .comments-container {
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .comments-container h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comments-container h3 i {
+            color: var(--sakura-deep);
+        }
+
+        /* 评论列表 */
+        .comments-list {
+            background: rgba(255, 245, 247, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(240, 215, 225, 0.5);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            min-height: 150px;
+        }
+
+        .comment-item {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(230, 200, 210, 0.4);
+            transition: var(--transition);
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sakura-pink), var(--sakura-mid));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--sakura-deep);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .comment-nickname {
+            font-weight: 600;
+            color: var(--sakura-deep);
+            font-size: 0.9rem;
+        }
+
+        .comment-time {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-left: auto;
+        }
+
+        .comment-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 42px;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .empty-comments {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-comments i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        .comments-loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        /* 评论表单 */
+        .comment-form-card {
+            background: rgba(255, 245, 247, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(240, 215, 225, 0.5);
+            border-radius: 16px;
+            padding: 24px 28px;
+        }
+
+        .comment-form-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .comment-form-card h4 i {
+            color: var(--sakura-deep);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .form-group label .required {
+            color: #e88d9b;
+        }
+
+        .form-group label .optional {
+            font-weight: normal;
+            color: var(--text-light);
+            font-size: 0.7rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid rgba(230, 200, 210, 0.5);
+            border-radius: 12px;
+            font-family: 'Noto Sans SC', 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            color: var(--text-primary);
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sakura-mid);
+            box-shadow: 0 0 0 3px rgba(244, 184, 193, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .char-counter {
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        .char-counter.warning {
+            color: #e8a060;
+        }
+
+        .char-counter.over {
+            color: #e88d9b;
+        }
+
+        .submit-comment-btn {
+            background: linear-gradient(135deg, #F4B8C1, #E88D9B);
+            border: none;
+            border-radius: 30px;
+            padding: 8px 24px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .submit-comment-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(232, 141, 155, 0.3);
+        }
+
+        .submit-comment-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background: rgba(200, 230, 210, 0.5);
+            color: #3a6a4a;
+            border: 1px solid rgba(150, 210, 170, 0.5);
+        }
+
+        .form-message.error {
+            display: block;
+            background: rgba(255, 210, 210, 0.5);
+            color: #a04040;
+            border: 1px solid rgba(240, 170, 170, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .comments-list {
+                padding: 16px;
+            }
+
+            .comment-content {
+                margin-left: 0;
+            }
+
+            .comment-header {
+                flex-wrap: wrap;
+            }
+
+            .comment-time {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 4px;
+            }
+
+            .comment-form-card {
+                padding: 18px;
+            }
+        }
+
         /* Markdown 正文渲染 */
         .article-body {
             font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
@@ -357,47 +636,45 @@
 
         <!-- 文章内容 -->
         <div id="articleContent" style="display:none;"></div>
-    </main>
 
-    <!-- 评论区 - Twikoo -->
-    <div class="twikoo-container" data-aos="fade-up">
-        <h3><i class="fas fa-comments"></i> 评论区</h3>
-        <div id="twikoo-comments"></div>
-    </div>
-    
-    <!-- Twikoo 脚本 -->
-    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.7.3/dist/twikoo.all.min.js"></script>
-    <script>
-        (function () {
-            // 等待页面主要内容加载完成
-            function initTwikoo() {
-                if (typeof twikoo === 'undefined') {
-                    console.warn('Twikoo 未加载，稍后重试');
-                    setTimeout(initTwikoo, 500);
-                    return;
-                }
-                twikoo.init({
-                    // ⚠️ 请替换为你自己的后端地址
-                    envId: 'https://twikoo.ice-rink.online/',
-                    el: '#twikoo-comments',
-                    lang: 'zh-CN',
-                }).then(() => {
-                    console.log('✅ 评论系统已就绪');
-                }).catch(err => {
-                    console.error('❌ 评论系统加载失败:', err);
-                    // 可选：显示友好提示
-                    const el = document.getElementById('twikoo-comments');
-                    if (el) el.innerHTML = '<p style="text-align:center;color:var(--text-light);">💬 评论功能暂时不可用，请稍后再试～</p>';
-                });
-            }
-            // 确保 DOM 完全加载后再执行
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initTwikoo);
-            } else {
-                initTwikoo();
-            }
-        })();
-    </script>
+        <!-- 新的评论区 - 简单评论系统 -->
+        <div class="comments-container" data-aos="fade-up">
+            <h3><i class="fas fa-comments"></i> <span id="commentCount">0</span> 条评论</h3>
+        
+            <!-- 评论列表区域 -->
+            <div id="commentsList" class="comments-list">
+                <div class="comments-loading">💬 加载评论中...</div>
+            </div>
+        
+            <!-- 发表评论表单 -->
+            <div class="comment-form-card">
+                <h4><i class="fas fa-pen"></i> 留下你的想法</h4>
+                <form id="commentForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> 昵称 <span class="required">*</span></label>
+                            <input type="text" id="commentNickname" placeholder="怎么称呼你？" maxlength="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> 邮箱 <span class="optional">(可选)</span></label>
+                            <input type="email" id="commentEmail" placeholder="不会公开，用于头像显示">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment-dots"></i> 评论内容 <span class="required">*</span></label>
+                        <textarea id="commentContent" rows="4" placeholder="分享你的想法或建议～" maxlength="500" required></textarea>
+                        <div class="form-footer">
+                            <span class="char-counter"><span id="charCount">0</span>/500</span>
+                            <button type="submit" class="submit-comment-btn" id="submitCommentBtn">
+                                <i class="fas fa-paper-plane"></i> 发表评论
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="commentFormMessage" class="form-message"></div>
+            </div>
+        </div>
+    </main>
 
     <footer class="footer" data-aos="fade-up" data-aos-duration="700">
         <p style="margin-top:4px;font-size:0.78rem;">© 2026 Ice_rink · 保持好奇，保持温柔</p>
@@ -544,6 +821,213 @@
                 } catch (error) {
                     showError('📄 文章加载失败', error.message);
                 }
+            }
+
+            // ========== 新评论系统 ==========
+            let currentPostId = null;
+
+            // 获取当前文章 ID（复用已有的 postId）
+            function getCurrentPostId() {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('id');
+            }
+
+            // 加载评论列表
+            async function loadComments(postId) {
+                const commentsList = document.getElementById('commentsList');
+                if (!commentsList) return;
+
+                commentsList.innerHTML = '<div class="comments-loading">💬 加载评论中...</div>';
+
+                try {
+                    const response = await fetch(`/api/comments?postId=${postId}`);
+                    const data = await response.json();
+
+                    if (!data.success) {
+                        throw new Error(data.error || '加载失败');
+                    }
+
+                    const comments = data.comments || [];
+                    const countEl = document.getElementById('commentCount');
+                    if (countEl) countEl.textContent = comments.length;
+
+                    if (comments.length === 0) {
+                        commentsList.innerHTML = `
+                <div class="empty-comments">
+                    <i class="fas fa-comment-dots"></i>
+                    <p>还没有评论，来说两句吧～</p>
+                </div>
+            `;
+                        return;
+                    }
+
+                    commentsList.innerHTML = comments.map(comment => {
+                        // 获取昵称首字母作为头像文字
+                        const initial = comment.nickname ? comment.nickname.charAt(0).toUpperCase() : '?';
+                        // 格式化时间
+                        const date = new Date(comment.createdAt);
+                        const timeStr = date.toLocaleString('zh-CN', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        // 对内容进行换行处理
+                        const contentHtml = escapeHtml(comment.content).replace(/\n/g, '<br>');
+                        return `
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-avatar">${escapeHtml(initial)}</div>
+                        <span class="comment-nickname">${escapeHtml(comment.nickname)}</span>
+                        <span class="comment-time">${timeStr}</span>
+                    </div>
+                    <div class="comment-content">${contentHtml}</div>
+                </div>
+            `;
+                    }).join('');
+                } catch (error) {
+                    console.error('加载评论失败:', error);
+                    commentsList.innerHTML = '<div class="empty-comments"><i class="fas fa-exclamation-circle"></i><p>评论加载失败，请刷新重试</p></div>';
+                }
+            }
+
+            // 简单的转义函数
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            // 提交评论
+            async function submitComment(postId, nickname, email, content) {
+                const response = await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ postId, nickname, email, content }),
+                });
+                return await response.json();
+            }
+
+            // 初始化评论系统
+            function initComments() {
+                currentPostId = getCurrentPostId();
+                if (!currentPostId) return;
+
+                // 加载评论列表
+                loadComments(currentPostId);
+
+                // 表单提交
+                const form = document.getElementById('commentForm');
+                const nicknameInput = document.getElementById('commentNickname');
+                const emailInput = document.getElementById('commentEmail');
+                const contentInput = document.getElementById('commentContent');
+                const submitBtn = document.getElementById('submitCommentBtn');
+                const formMessage = document.getElementById('commentFormMessage');
+                const charCountSpan = document.getElementById('charCount');
+
+                // 字符计数
+                if (contentInput && charCountSpan) {
+                    contentInput.addEventListener('input', () => {
+                        const len = contentInput.value.length;
+                        charCountSpan.textContent = len;
+                        const counter = document.querySelector('.char-counter');
+                        if (counter) {
+                            if (len >= 450) {
+                                counter.classList.add('warning');
+                            } else {
+                                counter.classList.remove('warning');
+                            }
+                            if (len >= 500) {
+                                counter.classList.add('over');
+                            } else {
+                                counter.classList.remove('over');
+                            }
+                        }
+                    });
+                }
+
+                if (!form) return;
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const nickname = nicknameInput?.value.trim();
+                    const email = emailInput?.value.trim() || '';
+                    const content = contentInput?.value.trim();
+
+                    if (!nickname) {
+                        showFormMessage('请填写昵称', 'error');
+                        nicknameInput?.focus();
+                        return;
+                    }
+                    if (nickname.length > 20) {
+                        showFormMessage('昵称不能超过20个字符', 'error');
+                        nicknameInput?.focus();
+                        return;
+                    }
+                    if (!content) {
+                        showFormMessage('请填写评论内容', 'error');
+                        contentInput?.focus();
+                        return;
+                    }
+                    if (content.length > 500) {
+                        showFormMessage('评论内容不能超过500个字符', 'error');
+                        contentInput?.focus();
+                        return;
+                    }
+
+                    // 禁用按钮，显示加载状态
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提交中...';
+                    formMessage.style.display = 'none';
+
+                    try {
+                        const result = await submitComment(currentPostId, nickname, email, content);
+
+                        if (result.success) {
+                            showFormMessage('评论发表成功！', 'success');
+                            // 清空表单
+                            if (contentInput) contentInput.value = '';
+                            if (charCountSpan) charCountSpan.textContent = '0';
+                            // 重新加载评论列表
+                            await loadComments(currentPostId);
+                            // 滚动到评论列表顶部
+                            const commentsList = document.getElementById('commentsList');
+                            if (commentsList) {
+                                commentsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        } else {
+                            showFormMessage(result.error || '发表失败，请稍后重试', 'error');
+                        }
+                    } catch (error) {
+                        console.error('提交评论失败:', error);
+                        showFormMessage('网络错误，请稍后重试', 'error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> 发表评论';
+                    }
+                });
+
+                function showFormMessage(msg, type) {
+                    if (!formMessage) return;
+                    formMessage.textContent = msg;
+                    formMessage.className = `form-message ${type}`;
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 3000);
+                }
+            }
+
+            // 等待 DOM 加载完成后初始化评论系统
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initComments);
+            } else {
+                initComments();
             }
 
             function showError(title, message) {
